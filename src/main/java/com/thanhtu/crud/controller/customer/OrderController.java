@@ -32,7 +32,7 @@ import java.util.Optional;
 
 @RestController
 //@PreAuthorize("hasAuthority('CUSTOMER')")
-@CrossOrigin(origins = "https://shoppt-reactapp.vercel.app")
+@CrossOrigin(origins = "http://localhost:4006")
 @RequestMapping("/orders")
 public class OrderController {
 

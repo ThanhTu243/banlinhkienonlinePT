@@ -43,7 +43,7 @@ import static com.mservice.shared.sharedmodels.AbstractProcess.getGson;
 
 @RestController
 //@PreAuthorize("hasAuthority('CUSTOMER')")
-@CrossOrigin(origins = "https://shoppt-reactapp.vercel.app")
+@CrossOrigin(origins = "http://localhost:4006")
 @RequestMapping("/payment/")
 public class PaymentController {
     public static final String URL_SUCCESS = "payment/paypal/success";
