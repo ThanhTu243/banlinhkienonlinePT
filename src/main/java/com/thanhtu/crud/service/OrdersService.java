@@ -40,4 +40,6 @@ public interface OrdersService {
     List<ProductToReview> getOrderDetailByCustomerToReview(int id, String statusOrder);
 
     OrderStatistic getStasticOrder(int customerId);
+
+    void callBackOrder(Integer orderId, List<Integer> cartItemList);
 }

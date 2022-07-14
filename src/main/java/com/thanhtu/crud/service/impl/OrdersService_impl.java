@@ -290,4 +290,16 @@ public class OrdersService_impl implements OrdersService {
         return orderStatistic;
     }
 
+    @Override
+    public void callBackOrder(Integer orderId, List<Integer> cartItemList) {
+        for(Integer cartId:cartItemList)
+        {
+            CartEntity cart=cartRepo.findCartEntitiesByCartIdAndIsDelete(cartId,"YES");
+            cart.setIsDelete("NO");
+            cartRepo.save(cart);
+        }
+        OrdersEntity ordersEntity=orderRepo.findOrdersEntityByOrderId(orderId);
+        ordersEntity.setStatusOrder("Đã xóa");
+    }
+
 }
