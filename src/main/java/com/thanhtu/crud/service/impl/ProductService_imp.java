@@ -5,6 +5,7 @@ import com.thanhtu.crud.exception.DuplicateRecoredException;
 import com.thanhtu.crud.exception.NotFoundException;
 import com.thanhtu.crud.model.dto.ProductDto;
 import com.thanhtu.crud.model.mapper.ProductMapper;
+import com.thanhtu.crud.model.request.ChangeIsDeleteRequest;
 import com.thanhtu.crud.model.request.product.*;
 import com.thanhtu.crud.repository.*;
 import com.thanhtu.crud.service.ProductService;
@@ -201,6 +202,13 @@ public class ProductService_imp implements ProductService {
             listTop10DiscountProduct.add(ProductMapper.toProductDto(list.get(i)));
         }
         return listTop10DiscountProduct;
+    }
+
+    @Override
+    public void changeIsDelete(Integer id, ChangeIsDeleteRequest changeIsDeleteRequest) {
+        ProductEntity product=productRepo.findProductEntityByProductId(id);
+        product.setIsDelete(changeIsDeleteRequest.getIsDelete());
+        productRepo.save(product);
     }
 
 

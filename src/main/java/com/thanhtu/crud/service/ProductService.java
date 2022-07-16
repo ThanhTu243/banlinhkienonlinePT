@@ -2,6 +2,7 @@ package com.thanhtu.crud.service;
 
 import com.thanhtu.crud.entity.ProductEntity;
 import com.thanhtu.crud.model.dto.ProductDto;
+import com.thanhtu.crud.model.request.ChangeIsDeleteRequest;
 import com.thanhtu.crud.model.request.product.ProductByCategoryRequest;
 import com.thanhtu.crud.model.request.product.ProductByNameRequest;
 import com.thanhtu.crud.model.request.product.ProductBySupplierRequest;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ProductService {
+
+
 
     Page<ProductEntity> getListProduct(Pageable pageable);
 
@@ -44,4 +47,6 @@ public interface ProductService {
     Page<ProductEntity> getListProductByCategoryAndSupplierAndKeyword(String category, String supplier, String keyword, Pageable pageable);
 
     List<ProductDto> getTop10DiscountProduct();
+
+    void changeIsDelete(Integer id, ChangeIsDeleteRequest changeIsDeleteRequest);
 }

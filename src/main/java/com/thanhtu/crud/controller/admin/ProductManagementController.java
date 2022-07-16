@@ -3,6 +3,7 @@ package com.thanhtu.crud.controller.admin;
 import com.thanhtu.crud.entity.ProductEntity;
 import com.thanhtu.crud.model.dto.ProductDto;
 import com.thanhtu.crud.model.mapper.ProductMapper;
+import com.thanhtu.crud.model.request.ChangeIsDeleteRequest;
 import com.thanhtu.crud.model.request.product.ProductByCategoryRequest;
 import com.thanhtu.crud.model.request.product.ProductByNameRequest;
 import com.thanhtu.crud.model.request.product.ProductBySupplierRequest;
@@ -161,9 +162,9 @@ public class ProductManagementController {
     }
 
     @PutMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteProduct(@RequestParam(value = "page",required = false) Optional<Integer> page,@PathVariable("id") Integer id)
+    public ResponseEntity<Object> changeIsDelete(@RequestParam(value = "page",required = false) Optional<Integer> page, @PathVariable("id") Integer id, @RequestBody ChangeIsDeleteRequest changeIsDeleteRequest)
     {
-        productService.deleteProduct(id);
+        productService.changeIsDelete(id,changeIsDeleteRequest);
         if(page.isPresent())
         {
             int pageNumber= page.get();
