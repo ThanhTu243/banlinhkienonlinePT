@@ -7,5 +7,6 @@ public class ProductOrder {
     private Integer orderId;
     private Integer producId;
     private String productName;
+    private String productImage;
     private Integer quantity;
 }
