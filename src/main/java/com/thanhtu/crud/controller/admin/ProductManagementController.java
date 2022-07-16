@@ -152,7 +152,7 @@ public class ProductManagementController {
         }
         else if(category ==null && supplier==null && keyword != null)
         {
-            Page<ProductEntity> productByKeyWordList=productService.getListProductByKeyWord1(keyword,pageable);
+            Page<ProductEntity> productByKeyWordList=productService.getListProductByKeyWord1Admin(keyword,pageable);
             totalPages=productByKeyWordList.getTotalPages();
             currentPage=productByKeyWordList.getNumber()+1;
             listPro=productByKeyWordList.toList();
