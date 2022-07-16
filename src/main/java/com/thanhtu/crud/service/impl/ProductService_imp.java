@@ -34,7 +34,7 @@ public class ProductService_imp implements ProductService {
 
     @Override
     public Page<ProductEntity> getListProduct(Pageable pageable) {
-        return productRepo.findProductEntityByIsDelete("NO",pageable);
+        return productRepo.findAll(pageable);
     }
 
     @Override
