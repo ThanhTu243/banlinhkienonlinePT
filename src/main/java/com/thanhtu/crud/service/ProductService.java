@@ -19,6 +19,7 @@ public interface ProductService {
     Page<ProductEntity> getListProduct(Pageable pageable);
 
     ProductDto getProductById(int id);
+    ProductDto getProductByIdAdmin(int id);
 
     ProductDto createProduct(ProductRequest productRequest);
 
@@ -37,6 +38,7 @@ public interface ProductService {
     Page<ProductEntity> getListProductByKeyWord(String keyword,Pageable page);
 
     Page<ProductEntity> getListProductByKeyWord1(String keyword,Pageable page);
+    Page<ProductEntity> getListProductByKeyWord1Admin(String keyword,Pageable page);
 
     Page<ProductEntity> getListProductByKeyWordAndCategory(String keyword, String categoryName, Pageable pageable);
 

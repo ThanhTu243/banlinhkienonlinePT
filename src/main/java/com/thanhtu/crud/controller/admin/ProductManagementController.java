@@ -51,90 +51,10 @@ public class ProductManagementController {
         List<ProductEntity> listPro=list.toList();
         return ResponseEntity.status(HttpStatus.OK).body(ProductMapper.toProductPageDto(listPro,totalPages,currentPage));
     }
-    @GetMapping("")
-    public ResponseEntity<?> getListProductByName(@RequestParam(value = "page",required = false) Optional<Integer> page,
-                                                  @Valid @RequestBody ProductByNameRequest productByNameRequest,
-                                                  BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors())
-        {
-            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_ACCEPTABLE);
-        }
-        if(page.isPresent())
-        {
-            int pageNumber= page.get();
-            page=Optional.of(pageNumber-1);
-
-        }
-        else{
-            page=Optional.of(0);
-        }
-        Pageable pageable= PageRequest.of(page.get(),10);
-
-        Page<ProductEntity> list=productService.getListProductByName(productByNameRequest,pageable);
-        int totalPages=list.getTotalPages();
-        int currentPage=list.getNumber()+1;
-        List<ProductEntity> listPro=list.toList();
-        return ResponseEntity.status(HttpStatus.OK).body(ProductMapper.toProductPageDto(listPro,totalPages,currentPage));
-    }
-
-    @GetMapping("/category")
-    public ResponseEntity<?> getListProductByCategory(@RequestParam(value = "page",required = false) Optional<Integer> page,
-                                                  @Valid @RequestBody ProductByCategoryRequest productByCategoryRequest,
-                                                  BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors())
-        {
-            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_ACCEPTABLE);
-        }
-        if(page.isPresent())
-        {
-            int pageNumber= page.get();
-            page=Optional.of(pageNumber-1);
-
-        }
-        else{
-            page=Optional.of(0);
-        }
-        Pageable pageable= PageRequest.of(page.get(),10);
-
-        Page<ProductEntity> list=productService.getListProductByCategory(productByCategoryRequest,pageable);
-        int totalPages=list.getTotalPages();
-        int currentPage=list.getNumber()+1;
-        List<ProductEntity> listPro=list.toList();
-        return ResponseEntity.status(HttpStatus.OK).body(ProductMapper.toProductPageDto(listPro,totalPages,currentPage));
-    }
-
-    @GetMapping("/supplier")
-    public ResponseEntity<?> getListProductBySupplier(@RequestParam(value = "page",required = false) Optional<Integer> page,
-                                                      @Valid @RequestBody ProductBySupplierRequest productBySupplierRequest,
-                                                      BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors())
-        {
-            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_ACCEPTABLE);
-        }
-        if(page.isPresent())
-        {
-            int pageNumber= page.get();
-            page=Optional.of(pageNumber-1);
-
-        }
-        else{
-            page=Optional.of(0);
-        }
-        Pageable pageable= PageRequest.of(page.get(),10);
-
-        Page<ProductEntity> list=productService.getListProductBySupplier(productBySupplierRequest,pageable);
-        int totalPages=list.getTotalPages();
-        int currentPage=list.getNumber()+1;
-        List<ProductEntity> listPro=list.toList();
-        return ResponseEntity.status(HttpStatus.OK).body(ProductMapper.toProductPageDto(listPro,totalPages,currentPage));
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable int id) {
-        ProductDto productById = productService.getProductById(id);
+        ProductDto productById = productService.getProductByIdAdmin(id);
         return new ResponseEntity<>(productById,HttpStatus.OK);
     }
 

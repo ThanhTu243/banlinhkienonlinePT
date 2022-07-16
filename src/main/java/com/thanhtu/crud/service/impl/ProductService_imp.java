@@ -49,6 +49,12 @@ public class ProductService_imp implements ProductService {
     }
 
     @Override
+    public ProductDto getProductByIdAdmin(int id) {
+        ProductEntity productEntity=productRepo.findProductEntityByProductId(id);
+        return ProductMapper.toProductDto(productEntity);
+    }
+
+    @Override
     public ProductDto createProduct(ProductRequest productRequest) {
         List<ProductEntity> list=productRepo.findProductEntityByIsDelete("NO");
         for(ProductEntity productEntity:list)
@@ -165,6 +171,11 @@ public class ProductService_imp implements ProductService {
     @Override
     public Page<ProductEntity> getListProductByKeyWord1(String keyword,Pageable page) {
         return productRepo.findAllByProductNameContainsAndIsDelete(keyword,"NO",page);
+    }
+
+    @Override
+    public Page<ProductEntity> getListProductByKeyWord1Admin(String keyword, Pageable page) {
+        return productRepo.findAllByProductNameContains(keyword,page);
     }
 
     @Override
