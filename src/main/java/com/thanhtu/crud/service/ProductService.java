@@ -14,8 +14,6 @@ import java.util.List;
 
 public interface ProductService {
 
-
-
     Page<ProductEntity> getListProduct(Pageable pageable);
 
     ProductDto getProductById(int id);
@@ -51,4 +49,6 @@ public interface ProductService {
     List<ProductDto> getTop10DiscountProduct();
 
     void changeIsDelete(Integer id, ChangeIsDeleteRequest changeIsDeleteRequest);
+
+    Page<ProductEntity> getListProductCustomer(Pageable pageable);
 }
