@@ -52,7 +52,7 @@ public class ProductService_imp implements ProductService {
 
     @Override
     public ProductDto createProduct(ProductRequest productRequest) {
-        List<ProductEntity> list=productRepo.findProductEntityByIsDelete("NO");
+        List<ProductEntity> list=productRepo.findAll();
         for(ProductEntity productEntity:list)
         {
             if(productEntity.getProductName().equals(productRequest.getProductName()))
@@ -87,10 +87,10 @@ public class ProductService_imp implements ProductService {
         }
         if(!productEntity.getProductName().equals(productRequest.getProductName()))
         {
-            List<ProductEntity> list=productRepo.findProductEntityByIsDelete("NO");
+            List<ProductEntity> list=productRepo.findAll();
             for(ProductEntity productEntity1:list)
             {
-                if(productEntity1.getProductName().equals(productRequest.getProductName()))
+                if(productEntity1.getProductName().equals(productRequest.getProductName()) && productEntity1.getProductId()!=id)
                 {
                     throw new DuplicateRecoredException("Trùng tên sản phẫm rồi");
                 }
